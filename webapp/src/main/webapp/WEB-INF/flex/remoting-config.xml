@@ -23,4 +23,5 @@
   <default-channels>
     <channel ref="my-amf" />
   </default-channels>
+
 </service>

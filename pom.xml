@@ -29,9 +29,9 @@
   </modules>
 
   <!-- More Project Information -->
-  <name>workshop</name>
+  <name>spring-blazeds-example</name>
   <description>A small Spring, BlazeDS, Maven and Flex integration project.</description>
-  <url>http://www.github.com/floriansalihovic</url>
+  <url>http://www.github.com/floriansalihovic/spring-blazeds-example</url>
   <inceptionYear>2010</inceptionYear>
   <licenses>
     <license>
@@ -82,4 +82,5 @@
      </snapshots>
     </pluginRepository>
   </pluginRepositories>
+
 </project>

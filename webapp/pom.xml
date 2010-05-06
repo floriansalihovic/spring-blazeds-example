@@ -25,139 +25,87 @@
   <version>1.0.0-SNAPSHOT</version>
   <packaging>war</packaging>
   <dependencies>
-    <!-- Flex SDK dependencies for flexmojos-maven-plugin. -->
     <dependency>
       <groupId>com.adobe.flex</groupId>
       <artifactId>compiler</artifactId>
-      <version>4.0.0.14159</version>
       <type>pom</type>
     </dependency>
     <dependency>
       <groupId>com.adobe.flex.framework</groupId>
       <artifactId>flex-framework</artifactId>
-      <version>4.0.0.14159</version>
       <type>pom</type>
     </dependency>
-    <!--
-      ~  BlazeDS libraries
-      ~  - common
-      ~  - core
-      ~  - opt
-      ~  - proxy
-      ~  - remoting
-    -->
     <dependency>
       <groupId>com.adobe.blazeds</groupId>
       <artifactId>blazeds-common</artifactId>
-      <type>jar</type>
-      <version>3.2.0.3978</version>
     </dependency>
     <dependency>
       <groupId>com.adobe.blazeds</groupId>
       <artifactId>blazeds-core</artifactId>
-      <type>jar</type>
-      <version>3.2.0.3978</version>
     </dependency>
     <dependency>
       <groupId>com.adobe.blazeds</groupId>
       <artifactId>blazeds-opt</artifactId>
-      <version>3.2.0.3978</version>
-      <type>jar</type>
     </dependency>
     <dependency>
       <groupId>com.adobe.blazeds</groupId>
       <artifactId>blazeds-proxy</artifactId>
-      <version>3.2.0.3978</version>
-      <type>jar</type>
     </dependency>
     <dependency>
       <groupId>com.adobe.blazeds</groupId>
       <artifactId>blazeds-remoting</artifactId>
-      <version>3.2.0.3978</version>
-      <type>jar</type>
     </dependency>
-    <!-- BlazeDS Spring Integration -->
     <dependency>
       <groupId>org.springframework.flex</groupId>
       <artifactId>spring-flex</artifactId>
-      <version>1.0.3.RELEASE</version>
     </dependency>
-    <!-- Spring aop -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-aop</artifactId>
-      <version>2.5.6.SEC01</version>
     </dependency>
-    <!-- Spring beans -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-beans</artifactId>
-      <type>jar</type>
-      <version>2.5.6</version>
     </dependency>
-    <!-- Spring context -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-context</artifactId>
-      <type>jar</type>
-      <version>2.5.6</version>
     </dependency>
-    <!-- Spring context-support -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-context-support</artifactId>
-      <type>jar</type>
-      <version>2.5.6</version>
     </dependency>
-    <!-- Spring core -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-core</artifactId>
-      <type>jar</type>
-      <version>2.5.6</version>
     </dependency>
-    <!-- Spring tx -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-tx</artifactId>
-      <type>jar</type>
-      <version>2.5.6</version>
     </dependency>
-    <!-- Spring web -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-web</artifactId>
-      <type>jar</type>
-      <version>2.5.6</version>
     </dependency>
-    <!-- Spring webmvc -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-webmvc</artifactId>
-      <type>jar</type>
-      <version>2.5.6</version>
     </dependency>
-    <!-- Servlet API -->
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>servlet-api</artifactId>
-      <version>2.5</version>
     </dependency>
-    <!-- Additional dependency for the servlet API. -->
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>jstl</artifactId>
-      <version>1.2</version>
     </dependency>
     <dependency>
       <groupId>org.mortbay.jetty</groupId>
       <artifactId>maven-jetty-plugin</artifactId>
-      <version>6.1.23</version>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -166,6 +114,134 @@
     <groupId>de.flashforum.ffk10.beautiful.architectures</groupId>
     <version>1.0.0-SNAPSHOT</version>
   </parent>
+  <dependencyManagement>
+    <dependencies>
+      <!-- Flex SDK dependencies for flexmojos-maven-plugin. -->
+      <dependency>
+        <groupId>com.adobe.flex</groupId>
+        <artifactId>compiler</artifactId>
+        <version>4.0.0.14159</version>
+        <type>pom</type>
+      </dependency>
+      <dependency>
+        <groupId>com.adobe.flex.framework</groupId>
+        <artifactId>flex-framework</artifactId>
+        <version>4.0.0.14159</version>
+        <type>pom</type>
+      </dependency>
+      <!--
+        ~  BlazeDS libraries
+        ~  - common
+        ~  - core
+        ~  - opt
+        ~  - proxy
+        ~  - remoting
+      -->
+      <dependency>
+        <groupId>com.adobe.blazeds</groupId>
+        <artifactId>blazeds-common</artifactId>
+        <version>3.2.0.3978</version>
+      </dependency>
+      <dependency>
+        <groupId>com.adobe.blazeds</groupId>
+        <artifactId>blazeds-core</artifactId>
+        <version>3.2.0.3978</version>
+      </dependency>
+      <dependency>
+        <groupId>com.adobe.blazeds</groupId>
+        <artifactId>blazeds-opt</artifactId>
+        <version>3.2.0.3978</version>
+      </dependency>
+      <dependency>
+        <groupId>com.adobe.blazeds</groupId>
+        <artifactId>blazeds-proxy</artifactId>
+        <version>3.2.0.3978</version>
+      </dependency>
+      <dependency>
+        <groupId>com.adobe.blazeds</groupId>
+        <artifactId>blazeds-remoting</artifactId>
+        <version>3.2.0.3978</version>
+      </dependency>
+      <!-- BlazeDS Spring Integration -->
+      <dependency>
+        <groupId>org.springframework.flex</groupId>
+        <artifactId>spring-flex</artifactId>
+        <version>1.0.3.RELEASE</version>
+      </dependency>
+      <!-- Spring aop -->
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-aop</artifactId>
+        <version>2.5.6.SEC01</version>
+      </dependency>
+      <!-- Spring beans -->
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-beans</artifactId>
+        <version>2.5.6</version>
+      </dependency>
+      <!-- Spring context -->
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context</artifactId>
+        <version>2.5.6</version>
+      </dependency>
+      <!-- Spring context-support -->
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context-support</artifactId>
+        <version>2.5.6</version>
+      </dependency>
+      <!-- Spring core -->
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-core</artifactId>
+        <version>2.5.6</version>
+      </dependency>
+      <!-- Spring tx -->
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-tx</artifactId>
+        <type>jar</type>
+        <version>2.5.6</version>
+      </dependency>
+      <!-- Spring web -->
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-web</artifactId>
+        <version>2.5.6</version>
+      </dependency>
+      <!-- Spring webmvc -->
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-webmvc</artifactId>
+        <version>2.5.6</version>
+      </dependency>
+      <!-- Servlet API -->
+      <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>servlet-api</artifactId>
+        <version>2.5</version>
+      </dependency>
+      <!-- Additional dependency for the servlet API. -->
+      <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>jstl</artifactId>
+        <version>1.2</version>
+      </dependency>
+      <dependency>
+        <groupId>org.mortbay.jetty</groupId>
+        <artifactId>maven-jetty-plugin</artifactId>
+        <version>6.1.23</version>
+      </dependency>
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>3.8.1</version>
+      </dependency>
+    </dependencies>
+    
+  </dependencyManagement>
 
   <!-- Build Settings -->
   <build>
@@ -206,8 +282,8 @@
 
   <!-- More Project Information -->
   <name>webapp</name>
-  <description>A simple Sping powered BlazeDS web application.</description>
-  <url>http://www.github.com/floriansalihovic</url>
+  <description>A simple Spring powered BlazeDS web application.</description>
+  <url>http://www.github.com/floriansalihovic/spring-blazeds-example</url>
   <inceptionYear>2010</inceptionYear>
   <licenses>
     <license>
@@ -222,4 +298,5 @@
       <organization>flashforum.de</organization>
     </developer>
   </developers>
+
 </project>
