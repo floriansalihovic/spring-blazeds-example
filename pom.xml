@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright 2010 Florian Salihovic
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>de.flashforum.ffk10.beautiful.architectures</groupId>
+  <artifactId>spring-blazeds-example</artifactId>
+  <packaging>pom</packaging>
+  <version>1.0.0-SNAPSHOT</version>
+  <modules>
+    <module>client</module>
+    <module>webapp</module>
+  </modules>
+
+  <!-- More Project Information -->
+  <name>workshop</name>
+  <description>A small Spring, BlazeDS, Maven and Flex integration project.</description>
+  <url>http://www.github.com/floriansalihovic</url>
+  <inceptionYear>2010</inceptionYear>
+  <licenses>
+    <license>
+      <name>Apache Software License, version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+    </license>
+  </licenses>
+  <developers>
+    <developer>
+      <name>Florian Salihovic</name>
+      <email>florian.salihovic@me.com</email>
+      <organization>flashforum.de</organization>
+    </developer>
+  </developers>
+
+  <!-- Einvironment Settings -->
+  <repositories>
+    <repository>
+      <id>central</id>
+      <url>http://repository.sonatype.org/content/repositories/central</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+    <repository>
+      <id>flex-mojos-repository</id>
+      <url>http://repository.sonatype.org/content/groups/public/</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+  <pluginRepositories>
+    <pluginRepository>
+      <id>flex-mojos-repository</id>
+      <url>http://repository.sonatype.org/content/groups/public/</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+     </snapshots>
+    </pluginRepository>
+  </pluginRepositories>
+</project>

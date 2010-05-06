@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+               xmlns:s="library://ns.adobe.com/flex/spark"
+               xmlns:mx="library://ns.adobe.com/flex/mx"
+               applicationComplete="applicationCompleteHandler(event)"
+               minHeight="768"
+               minWidth="1024">
+
+  <fx:Declarations>
+    <!-- Place non-visual elements (e.g., services, value objects) here -->
+  </fx:Declarations>
+
+  <fx:Script>
+    <![CDATA[
+      import de.flashforum.ffk10.beautiful.architectures.domain.Greeting;
+
+      import de.flashforum.ffk10.beautiful.architectures.services.GreetingService;
+      import de.flashforum.ffk10.beautiful.architectures.services.IGreetingService;
+
+      import mx.controls.Alert;
+      import mx.events.FlexEvent;
+      import mx.rpc.events.FaultEvent;
+      import mx.rpc.events.ResultEvent;
+
+      protected function applicationCompleteHandler(event:FlexEvent):void
+      {
+          var service:IGreetingService = new GreetingService();
+          service.addEventListener(FaultEvent.FAULT, faultEventHandler);
+          service.addEventListener(ResultEvent.RESULT, resultEventHandler);
+          service.getMessage();
+      }
+
+      private function faultEventHandler(event:FaultEvent):void
+      {
+          Alert.show(event.fault.message);
+      }
+
+      private function resultEventHandler(event:ResultEvent):void
+      {
+          var greeting:Greeting = event.result as Greeting;
+          if (greeting)
+              messageView.text = greeting.message;
+      }
+    ]]>
+  </fx:Script>
+    <s:Panel>
+      <s:TextArea id="messageView" />
+    </s:Panel>
+</s:Application>
