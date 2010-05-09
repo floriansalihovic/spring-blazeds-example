@@ -12,6 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Flash Builder ide settings
+/.actionScriptProperties
+/.flexProperties
+/.project
+/.settings
+
 # IntelliJ IDEA ide settings
 /.idea
 /*.iml
