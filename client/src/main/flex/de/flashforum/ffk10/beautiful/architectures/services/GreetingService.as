@@ -17,6 +17,8 @@ package de.flashforum.ffk10.beautiful.architectures.services
 
     import flash.events.EventDispatcher;
 
+    import flash.events.IEventDispatcher;
+
     import mx.messaging.ChannelSet;
     import mx.messaging.channels.AMFChannel;
     import mx.rpc.AbstractOperation;
@@ -46,8 +48,6 @@ package de.flashforum.ffk10.beautiful.architectures.services
         //
         //---------------------------------------------------------------------
 
-        private var _operation:AbstractOperation;
-
         private var _service:RemoteObject;
 
         //---------------------------------------------------------------------
@@ -70,7 +70,20 @@ package de.flashforum.ffk10.beautiful.architectures.services
 
         public function getMessage():AsyncToken
         {
-            return _operation.send();
+            const operation:AbstractOperation = _service.getOperation("getMessage");
+            operation.addEventListener(FaultEvent.FAULT, getMessageOperation_faultEventHandler);
+            operation.addEventListener(ResultEvent.RESULT, getMessageOperation_resultEventHandler);
+
+            return operation.send();
+        }
+
+        public function getManyGreetings():AsyncToken
+        {
+            const operation:AbstractOperation = _service.getOperation("getManyGreetings");
+            operation.addEventListener(FaultEvent.FAULT, manyMassagesOperation_faultEventHandler);
+            operation.addEventListener(ResultEvent.RESULT, manyMassagesOperation_resultEventHandler);
+
+            return operation.send();
         }
 
         protected function initialize():void
@@ -82,10 +95,6 @@ package de.flashforum.ffk10.beautiful.architectures.services
             _service = new RemoteObject();
             _service.destination = DESTINATION;
             _service.channelSet = channelSet;
-
-            _operation = _service.getOperation("getMessage");
-            _operation.addEventListener(FaultEvent.FAULT, faultEventHandler);
-            _operation.addEventListener(ResultEvent.RESULT, resultEventHandler);
         }
 
         //---------------------------------------------------------------------
@@ -94,13 +103,31 @@ package de.flashforum.ffk10.beautiful.architectures.services
         //
         //---------------------------------------------------------------------
 
-        private function resultEventHandler(event:ResultEvent):void
+        private function getMessageOperation_resultEventHandler(event:ResultEvent):void
         {
+            IEventDispatcher(event.target).removeEventListener(event.type, arguments.callee);
+
             dispatchEvent(event.clone());
         }
 
-        private function faultEventHandler(event:FaultEvent):void
+        private function getMessageOperation_faultEventHandler(event:FaultEvent):void
         {
+            IEventDispatcher(event.target).removeEventListener(event.type, arguments.callee);
+
+            dispatchEvent(event.clone());
+        }
+
+        private function manyMassagesOperation_resultEventHandler(event:ResultEvent):void
+        {
+            IEventDispatcher(event.target).removeEventListener(event.type, arguments.callee);
+
+            dispatchEvent(event.clone());
+        }
+
+        private function manyMassagesOperation_faultEventHandler(event:FaultEvent):void
+        {
+            IEventDispatcher(event.target).removeEventListener(event.type, arguments.callee);
+
             dispatchEvent(event.clone());
         }
     }

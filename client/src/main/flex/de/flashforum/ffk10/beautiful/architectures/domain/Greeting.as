@@ -25,6 +25,42 @@ package de.flashforum.ffk10.beautiful.architectures.domain
         //
         //---------------------------------------------------------------------
 
+        //-----------------------------
+        //          date
+        //-----------------------------
+
+        private var _date:String;
+
+        public function get date():String
+        {
+            return _date;
+        }
+
+        public function set date(value:String):void
+        {
+            _date = value;
+        }
+
+        //-----------------------------
+        //          id
+        //-----------------------------
+
+        private var _id:int;
+
+        public function get id():int
+        {
+            return _id;
+        }
+
+        public function set id(value:int):void
+        {
+            _id = value;
+        }
+
+        //-----------------------------
+        //          message
+        //-----------------------------
+
         private var _message:String;
 
         public function get message():String

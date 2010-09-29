@@ -29,5 +29,7 @@ package de.flashforum.ffk10.beautiful.architectures.services
         //---------------------------------------------------------------------
 
         function getMessage():AsyncToken;
+
+        function getManyGreetings():AsyncToken;
     }
 }

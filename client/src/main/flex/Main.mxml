@@ -1,49 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
-               xmlns:s="library://ns.adobe.com/flex/spark"
-               xmlns:mx="library://ns.adobe.com/flex/mx"
-               applicationComplete="applicationCompleteHandler(event)"
-               minHeight="768"
-               minWidth="1024">
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
+               xmlns:mx="library://ns.adobe.com/flex/mx" applicationComplete="applicationCompleteHandler(event)"
+               minHeight="768" minWidth="1024">
 
-  <fx:Declarations>
-    <!-- Place non-visual elements (e.g., services, value objects) here -->
-  </fx:Declarations>
+    <fx:Script>
+        <![CDATA[
+            import de.flashforum.ffk10.beautiful.architectures.domain.Greeting;
 
-  <fx:Script>
-    <![CDATA[
-      import de.flashforum.ffk10.beautiful.architectures.domain.Greeting;
+            import de.flashforum.ffk10.beautiful.architectures.services.GreetingService;
+            import de.flashforum.ffk10.beautiful.architectures.services.IGreetingService;
 
-      import de.flashforum.ffk10.beautiful.architectures.services.GreetingService;
-      import de.flashforum.ffk10.beautiful.architectures.services.IGreetingService;
+            import mx.collections.IList;
+            import mx.controls.Alert;
+            import mx.events.FlexEvent;
+            import mx.rpc.events.FaultEvent;
+            import mx.rpc.events.ResultEvent;
 
-      import mx.controls.Alert;
-      import mx.events.FlexEvent;
-      import mx.rpc.events.FaultEvent;
-      import mx.rpc.events.ResultEvent;
+            //-----------------------------------------------------------------------
+            //
+            //            Event Handler
+            //
+            //-----------------------------------------------------------------------
 
-      protected function applicationCompleteHandler(event:FlexEvent):void
-      {
-          var service:IGreetingService = new GreetingService();
-          service.addEventListener(FaultEvent.FAULT, faultEventHandler);
-          service.addEventListener(ResultEvent.RESULT, resultEventHandler);
-          service.getMessage();
-      }
+            protected function applicationCompleteHandler(event:FlexEvent):void
+            {
+                const service:IGreetingService = new GreetingService();
+                service.addEventListener(FaultEvent.FAULT, getMessageOperation_faultEventHandler);
+                service.addEventListener(ResultEvent.RESULT, getMessageOperation_resultEventHandler);
+                service.getMessage();
+            }
 
-      private function faultEventHandler(event:FaultEvent):void
-      {
-          Alert.show(event.fault.message);
-      }
+            private function getMessageOperation_faultEventHandler(event:FaultEvent):void
+            {
+                IEventDispatcher(event.target).removeEventListener(event.type, arguments.callee);
+                IEventDispatcher(event.target).removeEventListener(
+                        ResultEvent.RESULT, getMessageOperation_resultEventHandler);
 
-      private function resultEventHandler(event:ResultEvent):void
-      {
-          var greeting:Greeting = event.result as Greeting;
-          if (greeting)
-              messageView.text = greeting.message;
-      }
-    ]]>
-  </fx:Script>
+                Alert.show(event.fault.message);
+            }
+
+            private function getManyMessagesOperation_resultEventHandler(event:ResultEvent):void
+            {
+                IEventDispatcher(event.target).removeEventListener(event.type, arguments.callee);
+                IEventDispatcher(event.target).removeEventListener(
+                        FaultEvent.FAULT, getMessageOperation_faultEventHandler);
+
+                const list:IList = event.result as IList;
+                if (list)
+                {
+                    messagesView.dataProvider = list;
+                }
+            }
+
+            private function getManyMessagesOperation_faultEventHandler(event:FaultEvent):void
+            {
+                IEventDispatcher(event.target).removeEventListener(event.type, arguments.callee);
+                IEventDispatcher(event.target).removeEventListener(
+                        ResultEvent.RESULT, getManyMessagesOperation_resultEventHandler);
+
+                Alert.show(event.fault.message);
+            }
+
+            private function getMessageOperation_resultEventHandler(event:ResultEvent):void
+            {
+                IEventDispatcher(event.target).removeEventListener(event.type, arguments.callee);
+                IEventDispatcher(event.target).removeEventListener(
+                        FaultEvent.FAULT, getManyMessagesOperation_faultEventHandler);
+
+                const greeting:Greeting = Greeting(event.result);
+                if (greeting)
+                {
+                    messageView.text = greeting.message;
+                }
+
+                const service:IGreetingService = IGreetingService(event.target);
+                service.addEventListener(FaultEvent.FAULT, getManyMessagesOperation_faultEventHandler);
+                service.addEventListener(ResultEvent.RESULT, getManyMessagesOperation_resultEventHandler);
+                service.getManyGreetings();
+            }
+
+        ]]>
+    </fx:Script>
+
+    <s:layout>
+        <s:HorizontalLayout />
+    </s:layout>
+
     <s:Panel>
-      <s:TextArea id="messageView" />
+        <s:TextArea id="messageView" width="300" />
+    </s:Panel>
+
+    <s:Panel>
+      <mx:DataGrid id="messagesView" width="500">
+          <mx:columns>
+              <mx:DataGridColumn dataField="id" />
+              <mx:DataGridColumn dataField="date" />
+              <mx:DataGridColumn dataField="message" />
+          </mx:columns>
+      </mx:DataGrid>
     </s:Panel>
 </s:Application>

@@ -16,11 +16,42 @@ package de.flashforum.ffk10.beautiful.architectures.services;
 
 import de.flashforum.ffk10.beautiful.architectures.domain.Greeting;
 
-public class GreetingServiceImpl implements GreetingService {
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+public class GreetingServiceImpl implements GreetingService
+{
 
     public Greeting getMessage() {
         Greeting greeting = new Greeting();
+        greeting.setDate(new Date());
+        greeting.setId(0);
         greeting.setMessage("Your Flex - BlazeDS connection works!");
+
         return greeting;
+    }
+
+    public List<Greeting> getManyGreetings() {
+        List<Greeting> list = new ArrayList<Greeting>();
+        Greeting greeting = new Greeting();
+        greeting.setDate(new Date());
+        greeting.setId(1);
+        greeting.setMessage("1. Your Flex <-> BlazeDS connection works!");
+        list.add(greeting);
+
+        greeting = new Greeting();
+        greeting.setDate(new Date());
+        greeting.setId(2);
+        greeting.setMessage("2. Your Flex <-> BlazeDS connection works!");
+        list.add(greeting);
+
+        greeting = new Greeting();
+        greeting.setDate(new Date());
+        greeting.setId(3);
+        greeting.setMessage("3. Your Flex <-> BlazeDS connection works!");
+        list.add(greeting);
+
+        return list;  //To change body of implemented methods use File | Settings | File Templates.
     }
 }

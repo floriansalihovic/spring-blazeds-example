@@ -16,7 +16,11 @@ package de.flashforum.ffk10.beautiful.architectures.services;
 
 import de.flashforum.ffk10.beautiful.architectures.domain.*;
 
+import java.util.List;
+
 public interface GreetingService {
 
-  Greeting getMessage();
+    Greeting getMessage();
+
+    List<Greeting> getManyGreetings();
 }

@@ -68,6 +68,11 @@
         <artifactId>flexmojos-maven-plugin</artifactId>
         <version>3.6.1</version>
         <extensions>true</extensions>
+        <configuration>
+          <debug>true</debug>
+          <coverageViewerPath />
+          <storepass />
+        </configuration>
         <dependencies>
           <dependency>
             <groupId>com.adobe.flex</groupId>
